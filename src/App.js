@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 import axios from 'axios'
+import Character from './components/Character'
 
 
 const App = () => {
@@ -15,19 +16,27 @@ const App = () => {
   // sync up with, if any.
 
   useEffect(() => {
-    axios.get(`https://swapi.dev/api/films/`)
+    axios.get(`https://swapi.dev/api/films/4/`)
       .then((res) => {
-      setFilms(res.data);
+      setFilms(res.data)
+      // setFilms(
+      //   films.map( character => {
+      //     console.log('hello')
+      //     const character = res.data.characters
+      //     return character ? <Character />
+      // })
+      // )
       console.log("success!", res.data);
     })
-    .catch((error) => console.log("Error!"));
+    .catch((error) => console.log("Error!", error));
   }, []);
+  
 
-  console.log(films.results)
+  // console.log(films)
   return (
-    <div className="App">
-      <h1 className="Header">Characters</h1>
-    </div>
+    
+    <Character/>
+    
   );
 }
 
