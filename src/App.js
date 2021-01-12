@@ -9,7 +9,7 @@ const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
 
-  const [films, setFilms] = useState([]);
+  const [person, setPerson] = useState([]);
   
 
   // Fetch characters from the API in an effect hook. Remember, anytime you have a 
@@ -17,17 +17,10 @@ const App = () => {
   // sync up with, if any.
 
   useEffect(() => {
-    axios.get(`https://swapi.py4e.com/api/films/7/`)
+    axios.get(`https://swapi.py4e.com/api/people/`)
       .then((res) => {
-      setFilms(res.data.characters)
-      // setFilms(
-      //   films.map( (character) => {
-      //     console.log('hello')
-      //     const character = res.data.characters
-      //     return character ? <Character />
-      // }))
-      //
-      console.log("success!", res.data.characters);
+      setPerson(res.data.results)
+      console.log("success!", res.data.results);
     })
     .catch((error) => console.log("Error!", error));
   }, []);
@@ -36,7 +29,7 @@ const App = () => {
   // console.log(films)
   return (
     
-    <Character characters={films}/>
+    <Character people={person}/>
     
   );
 }
